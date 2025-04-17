@@ -1,0 +1,95 @@
+import cosas.*
+import casa.*
+
+describe "Sobre las cosas que se compran" {
+    test "lista de las cosas compradas" {
+        casaDePepeYJulian.comprar(heladera)
+        casaDePepeYJulian.comprar(cama)
+        casaDePepeYJulian.comprar(plancha)
+        assert.equals([heladera,cama,plancha], casaDePepeYJulian.cosasCompradas())
+    }
+
+    test "tiene un electrodomestico" {
+        casaDePepeYJulian.comprar(heladera)
+        casaDePepeYJulian.comprar(cama)
+        casaDePepeYJulian.comprar(plancha)
+        assert.that(casaDePepeYJulian.tieneAlgun(electrodomestico))
+    }
+
+    test "tiene un mueble" {
+        casaDePepeYJulian.comprar(heladera)
+        casaDePepeYJulian.comprar(cama)
+        casaDePepeYJulian.comprar(plancha)
+        assert.that(casaDePepeYJulian.tieneAlgun(mueble))
+    }
+
+    test "no tiene comida" {
+        casaDePepeYJulian.comprar(heladera)
+        casaDePepeYJulian.comprar(cama)
+        casaDePepeYJulian.comprar(plancha)
+        assert.notThat(casaDePepeYJulian.tieneAlgun(comida))
+    }
+
+    test "Viene de comprar un electrodomestivco" {
+        casaDePepeYJulian.comprar(heladera)
+        casaDePepeYJulian.comprar(cama)
+        casaDePepeYJulian.comprar(plancha)
+        assert.that(casaDePepeYJulian.vieneDeComprar(electrodomestico))
+    }
+
+    test "No viene de comprar un mueble" {
+        casaDePepeYJulian.comprar(heladera)
+        casaDePepeYJulian.comprar(cama)
+        casaDePepeYJulian.comprar(plancha)
+        assert.notThat(casaDePepeYJulian.vieneDeComprar(mueble))
+    }
+
+    test "Es derrochona" {
+        casaDePepeYJulian.comprar(heladera)
+        casaDePepeYJulian.comprar(cama)
+        casaDePepeYJulian.comprar(plancha)
+        assert.that(casaDePepeYJulian.esDerrochona())
+    }
+
+    test "Los electrodomesticos son la heladera y la plancha" {
+        casaDePepeYJulian.comprar(heladera)
+        casaDePepeYJulian.comprar(cama)
+        casaDePepeYJulian.comprar(plancha)
+        assert.equals([heladera,plancha], casaDePepeYJulian.comprados(electrodomestico))
+    }
+    
+    test "El unico mueble es la cama" {
+        casaDePepeYJulian.comprar(heladera)
+        casaDePepeYJulian.comprar(cama)
+        casaDePepeYJulian.comprar(plancha)
+        assert.equals([cama], casaDePepeYJulian.comprados(mueble))
+    }
+    
+    test "No es una mala epoca" {
+        casaDePepeYJulian.comprar(heladera)
+        casaDePepeYJulian.comprar(cama)
+        casaDePepeYJulian.comprar(plancha)
+        assert.notThat(casaDePepeYJulian.malaEpoca())
+    }
+    
+    test "Falta comprar una tira de asado y un paquete de fideos" {
+        casaDePepeYJulian.comprar(heladera)
+        casaDePepeYJulian.comprar(cama)
+        casaDePepeYJulian.comprar(plancha)
+        assert.equals([tiraDeAsado,paqueteDeFideos],casaDePepeYJulian.queFaltaComprar([tiraDeAsado, paqueteDeFideos]))
+    }
+
+    test "Falta comida" {
+        casaDePepeYJulian.comprar(heladera)
+        casaDePepeYJulian.comprar(cama)
+        casaDePepeYJulian.comprar(plancha)
+        assert.that(casaDePepeYJulian.faltaComida())
+    }
+    
+    test "Compramos electrodomesticos y muebles" {
+        casaDePepeYJulian.comprar(heladera)
+        casaDePepeYJulian.comprar(cama)
+        casaDePepeYJulian.comprar(plancha)
+        assert.equals([electrodomestico,mueble], casaDePepeYJulian.categoríasCompradas())
+    }
+}
