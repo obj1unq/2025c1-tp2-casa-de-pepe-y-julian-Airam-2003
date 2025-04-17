@@ -3,6 +3,8 @@ import cosas.*
 object cuentaCorriente {
   var saldo = 30000
   
+  method saldo() = saldo
+  
   method saldo(_saldo) {
     saldo = _saldo
   }
@@ -26,6 +28,8 @@ object cuentaCorriente {
 object cuentaConGastos {
   var saldo = 500
   const costoPorOperacion = 20
+  
+  method saldo() = saldo
   
   method saldo(_saldo) {
     saldo = _saldo
@@ -56,6 +60,8 @@ object casaDePepeYJulian {
   
   method cosasCompradas() = cosasCompradas
   
+  method cuentaActual() = cuentaActual
+
   method importeTotal() = importeTotal
   
   method cuentaActual(_cuentaActual) {

@@ -93,3 +93,32 @@ describe "Sobre las cosas que se compran" {
         assert.equals([electrodomestico,mueble], casaDePepeYJulian.categoríasCompradas())
     }
 }
+
+describe "Cuentas bancarias" {
+    test "Cuenta corriente" {
+        cuentaCorriente.saldo(20)
+        cuentaCorriente.depositar(1000)
+        assert.equals(1020, cuentaCorriente.saldo())
+        cuentaCorriente.extraer(50)
+        assert.equals(970, cuentaCorriente.saldo())
+        assert.throwsException({cuentaCorriente.extraer(2000)})
+    }
+
+    test "Cuenta con gastos" {
+        cuentaConGastos.depositar(1000)
+        assert.equals(1480, cuentaConGastos.saldo())
+        cuentaConGastos.extraer(30)
+        assert.equals(1450, cuentaConGastos.saldo())
+        assert.throwsException({cuentaConGastos.depositar(2000)})
+        assert.equals(1450, cuentaConGastos.saldo())
+        cuentaConGastos.extraer(2000)
+        assert.equals(-550, cuentaConGastos.saldo())
+    }
+
+    test "Compras con la cuenta elegida" {
+        cuentaCorriente.saldo(1000)
+        casaDePepeYJulian.comprar(tiraDeAsado)
+        casaDePepeYJulian.comprar(paqueteDeFideos)
+        assert.equals(600, casaDePepeYJulian.cuentaActual().saldo())
+    }
+}
