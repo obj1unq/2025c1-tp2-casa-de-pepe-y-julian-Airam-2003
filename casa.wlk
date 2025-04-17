@@ -61,7 +61,7 @@ object casaDePepeYJulian {
   method cosasCompradas() = cosasCompradas
   
   method cuentaActual() = cuentaActual
-
+  
   method importeTotal() = importeTotal
   
   method cuentaActual(_cuentaActual) {
