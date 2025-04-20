@@ -55,14 +55,16 @@ object cuentaConGastos {
 
 object casaDePepeYJulian {
   const cosasCompradas = []
-  var importeTotal = 0
   var cuentaActual = cuentaCorriente
   
   method cosasCompradas() = cosasCompradas
   
   method cuentaActual() = cuentaActual
   
-  method importeTotal() = importeTotal
+  method importeTotal() = cosasCompradas.fold(
+    0,
+    { total, objeto => total + objeto.precio() }
+  )
   
   method cuentaActual(_cuentaActual) {
     cuentaActual = _cuentaActual
@@ -71,38 +73,39 @@ object casaDePepeYJulian {
   method comprar(cosa) {
     cuentaActual.extraer(cosa.precio())
     cosasCompradas.add(cosa)
-    importeTotal += cosa.precio()
   }
   
   method cantidadDeCosasCompradas() = cosasCompradas.size()
   
   method tieneAlgun(categoria) = cosasCompradas.any(
-    { o => o.categoria() == categoria }
+    { objeto => objeto.categoria() == categoria }
   )
   
-  method vieneDeComprar(
+  method vieneDeComprar(categoria) = cosasCompradas.last().esDeCategoria(
     categoria
-  ) = cosasCompradas.last().categoria() == categoria
+  )
   
-  method esDerrochona() = importeTotal >= 9000
+  method esDerrochona() = self.importeTotal() >= 9000
   
-  method compraMasCara() = cosasCompradas.sortBy({ o1, o2 => o1 > o2 })
+  method compraMasCara() = cosasCompradas.max({ objeto => objeto.precio() })
   
   method comprados(categoria) = cosasCompradas.filter(
-    { o => o.categoria() == categoria }
+    { objeto => objeto.categoria() == categoria }
   )
   
-  method malaEpoca() = cosasCompradas.all({ o => o.categoria() == comida })
+  method malaEpoca() = cosasCompradas.all(
+    { objeto => objeto.esDeCategoria(comida) }
+  )
   
   method queFaltaComprar(lista) = lista.filter(
-    { o => !cosasCompradas.contains(o) }
+    { objeto => !cosasCompradas.contains(objeto) }
   )
   
-  method faltaComida() = cosasCompradas.filter(
-    { o => o.categoria() == comida }
-  ).size() < 2
+  method faltaComida() = cosasCompradas.count(
+    { objeto => objeto.esDeCategoria(comida) }
+  ) < 2
   
   method categoríasCompradas() = cosasCompradas.map(
-    { o => o.categoria() }
+    { objeto => objeto.categoria() }
   ).withoutDuplicates()
 }
