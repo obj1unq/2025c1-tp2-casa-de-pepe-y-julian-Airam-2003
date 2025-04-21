@@ -1,34 +1,43 @@
-object electrodomestico{
+object electrodomestico {
+	
 }
 
 object mueble {
+	
 }
 
 object comida {
-
+	
 }
 
 object heladera {
-	method precio() { return 20000 }
-	method categoria() { return electrodomestico }
+	method precio() = 20000
+	method esDeCategoria(categoria) = categoria == self.categoria()
+	method categoria() = electrodomestico
 }
 
 object cama {
-	method precio() { return 8000 }
-	method categoria() { return mueble }
+	method precio() = 8000
+	
+	method esDeCategoria(categoria) = categoria == self.categoria()
+	
+	method categoria() = mueble
 }
 
 object tiraDeAsado {
-	method precio() { return 350 }
-	method categoria() { return comida }
+	method precio() = 350
+	method esDeCategoria(categoria) = categoria == self.categoria()
+	method categoria() = comida
 }
 
 object paqueteDeFideos {
-	method precio() { return 50 }
-	method categoria() { return comida }
+	method precio() = 50
+	method esDeCategoria(categoria) = categoria == self.categoria()
+	method categoria() = comida
 }
 
 object plancha {
-	method precio() { return 1200 }
-	method categoria() { return electrodomestico }
+	method precio() = 1200
+	method esDeCategoria(categoria) = categoria == self.categoria()
+	method categoria() = electrodomestico
 }
