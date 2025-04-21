@@ -103,10 +103,7 @@ describe "Sobre las cosas que se compran" {
     casaDePepeYJulian.comprar(heladera)
     casaDePepeYJulian.comprar(cama)
     casaDePepeYJulian.comprar(plancha)
-    assert.equals(
-      [electrodomestico, mueble],
-      casaDePepeYJulian.categoríasCompradas()
-    )
+    assert.equals([electrodomestico, mueble],casaDePepeYJulian.categoríasCompradas())
   }
 }
 
