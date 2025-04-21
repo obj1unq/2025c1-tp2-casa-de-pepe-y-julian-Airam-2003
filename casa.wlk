@@ -78,7 +78,7 @@ object casaDePepeYJulian {
   method cantidadDeCosasCompradas() = cosasCompradas.size()
   
   method tieneAlgun(categoria) = cosasCompradas.any(
-    { objeto => objeto.categoria() == categoria }
+    { objeto => objeto.esDeCategoria(categoria) }
   )
   
   method vieneDeComprar(categoria) = cosasCompradas.last().esDeCategoria(
@@ -90,7 +90,7 @@ object casaDePepeYJulian {
   method compraMasCara() = cosasCompradas.max({ objeto => objeto.precio() })
   
   method comprados(categoria) = cosasCompradas.filter(
-    { objeto => objeto.categoria() == categoria }
+    { objeto => objeto.esDeCategoria(categoria) }
   )
   
   method malaEpoca() = cosasCompradas.all(
