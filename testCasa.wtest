@@ -2,14 +2,13 @@ import cosas.*
 import casa.*
 
 describe "Sobre las cosas que se compran" {
-
   test "Gasto 29200 en total" {
     casaDePepeYJulian.comprar(heladera)
     casaDePepeYJulian.comprar(cama)
     casaDePepeYJulian.comprar(plancha)
-    assert.equals(29200,casaDePepeYJulian.importeTotal())
+    assert.equals(29200, casaDePepeYJulian.importeTotal())
   }
-
+  
   test "lista de las cosas compradas" {
     casaDePepeYJulian.comprar(heladera)
     casaDePepeYJulian.comprar(cama)
